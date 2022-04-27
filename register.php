@@ -59,8 +59,9 @@ include "includes/dbconn.php";
 
 
 
-            $username_query = "SELECT * from `register` where r_name= '$username'";
-            if ($con->query($username_query) ) {
+            $username_query = "SELECT * from register where r_name= '$username'";
+            $userrows=$con->query($username_query)->num_rows;
+            if ($userrows !=0) {
                 echo "<script>swal('Username Taken. Please Choose another one').then(()=> {window.location.href='register.php'})</script>";
             } else {
                 $query    = "INSERT into `register`(r_name,email,phone,r_password,user_status)
