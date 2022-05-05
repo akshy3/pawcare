@@ -90,7 +90,7 @@ include "../includes/dbconn.php";
               </div>
               <div class="form-group">
                 <label>Image</label>
-                <input type="file" id="image" name="p_img" class="form-control-file" placeholder="" onchange="preview_Image(event)">
+                <input type="file" name="p_img" class="form-control" placeholder="" onchange="preview_Image(event)">
               </div>
               <div class="form-group">
                 <label>Price</label>
