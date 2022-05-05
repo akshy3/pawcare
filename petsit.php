@@ -45,19 +45,34 @@ include "includes/dbconn.php";
                 die('Please fill all required fields!');
             }
 
-            $query    = "INSERT into `petsit`(u_id,fromdate,todate,type,address)
-                   VALUES ('$u_id','$fromdate','$todate','$type','$address')";
-            $result   = mysqli_query($con, $query);
-            if ($result) {
+
+
+            if (strtotime(date("d/m/Y")) > strtotime($fromdate)) {
                 echo "
-                <script>swal('Booked successfully').then(()=> window.location.href='petbookings.php')</script>
+                <script>swal('Pick a future date to book appointment.').then(()=> window.location.href='petsit.php')</script>
                 ";
             } else {
-                echo "
+
+
+                $query    = "INSERT into `petsit`(u_id,fromdate,todate,type,address)
+                   VALUES ('$u_id','$fromdate','$todate','$type','$address')";
+                $result   = mysqli_query($con, $query);
+
+                if ($result) {
+                    echo "
+                <script>swal('Booked successfully').then(()=> window.location.href='petbookings.php')</script>
+                ";
+                } else {
+                    echo "
                 <script>swal('Failed to book. Try again later.').then(()=> window.location.href='petsit.php')</script>
                 ";
+                }
             }
-        } else {
+        } 
+        
+        
+        
+        else {
 
 
 
