@@ -51,7 +51,15 @@ include "includes/dbconn.php";
                 echo "
                 <script>swal('Pick a future date to book appointment.').then(()=> window.location.href='petsit.php')</script>
                 ";
-            } else {
+            } 
+            
+            else if($fromdate > $todate){
+                echo "
+                <script>swal('To Date cannot be less than From Date').then(()=> window.location.href='petsit.php')</script>
+                ";
+            }
+            
+            else {
 
 
                 $query    = "INSERT into `petsit`(u_id,fromdate,todate,type,address)
@@ -62,7 +70,8 @@ include "includes/dbconn.php";
                     echo "
                 <script>swal('Booked successfully').then(()=> window.location.href='petbookings.php')</script>
                 ";
-                } else {
+                } 
+                else {
                     echo "
                 <script>swal('Failed to book. Try again later.').then(()=> window.location.href='petsit.php')</script>
                 ";
